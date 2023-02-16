@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import Header from "./Components/Header";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import StepFive from "./Components/StepFive";
+import StepSix from "./Components/StepSIx";
+import { FreePage } from "./Components/FreePage";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ backgroundColor: "#000" }}>
+      <ThemeProvider theme={darkTheme}>
+        <Header />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<StepFive />}></Route>
+            <Route path="/step-six" element={<StepSix />}></Route>
+            <Route path="/free" element={<FreePage />}></Route>
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </div>
   );
 }
